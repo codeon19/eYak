@@ -14,13 +14,13 @@ var bodyParser = require('body-parser');
 var Question = require('./Models/question');
 
 //set our port to either a predetermined port number if you have set it up, or 3001
-var port = process.env.API_PORT || 3001;
+app.set('port', (process.env.PORT || 3001));
 
 console.log(port);
 
 var mongoose = require('mongoose');
 var mongoURI = "mongodb://localhost:3001/";
-var MongoDB = mongoose.connect('mongodb://<dbuser>:<dbpassword>@ds147900.mlab.com:47900/heroku_9pwktg9n').connection;
+var MongoDB = mongoose.connect('mongodb://heroku_9pwktg9n:fpr8bebiq9sk9jjkdnn3cptlt5@ds147900.mlab.com:47900/heroku_9pwktg9n').connection;
 MongoDB.on('error', function(err) { console.log(err.message); });
 MongoDB.once('open', function() {
   console.log("mongodb connection open");
