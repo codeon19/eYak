@@ -6,6 +6,8 @@ var express = require('express');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 
+var server = require('http').createServer(app);
+
 //and create our instances
 var app = express();
 var router = express.Router();
@@ -46,4 +48,8 @@ app.use('/api', api);
 //starts the server and listens for requests
 app.listen(port, function() {
   console.log(`api running on port ${port}`);
+});
+
+server.listen(app.get('port'), () => {
+  console.log('Server started at http://localhost:' + app.get('port'));
 });
