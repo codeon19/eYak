@@ -26,6 +26,7 @@ class App extends Component {
         <HashRouter>
           <div>
             <Route exact path="/" component={Landing} />
+            <Route path='/q/:id/master' component={QuestionQueue} master={true}/>
           </div>
         </HashRouter>
 

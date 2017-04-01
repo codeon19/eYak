@@ -17,7 +17,7 @@ var Question = require('./Models/question');
 var port = process.env.API_PORT || 3001;
 
 var mongoose = require('mongoose');
-var mongoURI = "mongodb://localhost:30001/test";
+var mongoURI = "mongodb://localhost:3001/test";
 var MongoDB = mongoose.connect('mongodb://<dbuser>:<dbpassword>@ds147900.mlab.com:47900/heroku_9pwktg9n').connection;
 MongoDB.on('error', function(err) { console.log(err.message); });
 MongoDB.once('open', function() {

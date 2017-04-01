@@ -1,18 +1,18 @@
 import React, {Component} from 'react';
 
-import front-end from '../front-end';
+import Client from '../front-end';
 
 class Landing extends Component {
 
     constructor(props) {
         super(props);
 
-        this.createQueue = this.createQueue.bind(this);
+        this.createSession = this.createSession.bind(this);
     }
 
     createSession() {
-      front-end.createSession((sessionQ) => {
-        
+      Client.createSession((sessionQ) => {
+
         this.props.router.push('/q/' + sessionQ + '/master?key=' + sessionQ.masterKey);
       });
     }

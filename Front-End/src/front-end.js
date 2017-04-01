@@ -6,6 +6,10 @@ function createSession(cb) {
     .then(cb);
 }
 
-const front-end = {createSession}
+function parseJSON(response) {
+  return response.json();
+}
 
-export default front-end;
+const Client = {createSession}
+
+export default Client;
