@@ -45,11 +45,6 @@ app.use(function(req, res, next) {
 var api = require('./routes/api');
 app.use('/api', api);
 
-//starts the server and listens for requests
-app.listen(port, function() {
-  console.log(`api running on port ${port}`);
-});
-
 server.listen(app.get('port'), () => {
   console.log('Server started at http://localhost:' + app.get('port'));
 });
