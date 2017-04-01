@@ -13,19 +13,19 @@ var router = express.Router();
 var bodyParser = require('body-parser');
 var Question = require('./Models/question');
 
-var path = require('path');
-
 //set our port to either a predetermined port number if you have set it up, or 3001
-app.set('port', (process.env.PORT || 3001));
+var port = process.env.API_PORT || 3001;
 
-var MongoDB = mongoose.connect().connection;
-mongoose.Promise = require('bluebird');
+console.log(port);
 
-if (process.env.NODE_ENV === 'production') {
-  mongoose.connect('mongodb://<dbuser>:<dbpassword>@ds147900.mlab.com:47900/heroku_9pwktg9n');
-} else {
-  mongoose.connect('localhost/eyak');
-}
+var mongoose = require('mongoose');
+var mongoURI = "mongodb://localhost:3001/";
+var MongoDB = mongoose.connect('mongodb://<dbuser>:<dbpassword>@ds147900.mlab.com:47900/heroku_9pwktg9n').connection;
+MongoDB.on('error', function(err) { console.log(err.message); });
+MongoDB.once('open', function() {
+  console.log("mongodb connection open");
+});
+
 //now we should configure the API to use bodyParser and look for JSON data in the request body
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
