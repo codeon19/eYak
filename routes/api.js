@@ -10,18 +10,16 @@ router.get('/', function(req, res) {
 
 router.post('/q/create', function(req, res) {
 
-  res.json({ message: 'Routes are working'});
+  QuestionBoard.create({
+    questionBoards: []
+  }, function(err, sessionQ) {
+    if (err) {
+      res.json({ error: err });
+      return;
+    }
 
-  // QuestionBoard.create({
-  //   questionBoards: []
-  // }, function(err, sessionQ) {
-  //   if (err) {
-  //     res.json({ error: err });
-  //     return;
-  //   }
-  //
-  //   res.json(sessionQ);
-  // });
+    res.json(sessionQ);
+  });
 });
 
 module.exports = router;
