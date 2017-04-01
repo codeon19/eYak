@@ -28,7 +28,7 @@ class App extends Component {
             <Route exact path="/" component={Landing} />
           </div>
         </HashRouter>
-        
+
       </div>
     );
   }

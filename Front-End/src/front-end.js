@@ -1,4 +1,4 @@
-function createQueue(cb) {
+function createSession(cb) {
   fetch('/api/q/create', {
       method: 'POST'
     })

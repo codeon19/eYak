@@ -1,0 +1,22 @@
+{
+  "name": "auxq",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "axios": "^0.16.0",
+    "bluebird": "^3.4.7",
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "foreman": "^2.0.0",
+    "marked": "^0.3.6",
+    "mongoose": "^4.1.9",
+    "nodemon": "^1.11.0",
+    "path": "^0.12.7",
+    "randomstring": "^1.1.5",
+    "shortid": "^2.2.6",
+    "socket.io": "^1.7.3"
+  }
+}
