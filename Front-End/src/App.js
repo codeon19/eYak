@@ -11,6 +11,7 @@ import {
 } from 'react-router-dom';
 
 import Landing from './components/Landing';
+import QuestionBoard from './components/QuestionBoard';
 
 class App extends Component {
 
@@ -26,7 +27,7 @@ class App extends Component {
         <HashRouter>
           <div>
             <Route exact path="/" component={Landing} />
-            <Route path='/q/:id/master' component={QuestionQueue} master={true}/>
+            <Route path='/q/:id/master' component={QuestionBoard} master={true}/>
           </div>
         </HashRouter>
 
