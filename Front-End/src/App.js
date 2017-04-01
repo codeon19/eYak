@@ -2,13 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-import ReactDOM from 'react-dom';
-
-import {
-  HashRouter,
-  Route,
-  Link
-} from 'react-router-dom';
+import { Router, Route, browserHistory } from 'react-router'
 
 import Landing from './components/Landing';
 import QuestionBoard from './components/QuestionBoard';
@@ -24,12 +18,10 @@ class App extends Component {
           <h2>Welcome to eYak</h2>
         </div>
 
-        <HashRouter>
-          <div>
-            <Route exact path="/" component={Landing} />
-            <Route path='/q/:id/master' component={QuestionBoard} master={true}/>
-          </div>
-        </HashRouter>
+        <Router history={browserHistory}>
+          <Route path='/' component={Landing} />
+          <Route path='/q/:id/master' component={QuestionBoard} master={true}/>
+        </Router>
 
       </div>
     );

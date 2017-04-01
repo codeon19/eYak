@@ -16,15 +16,10 @@ var bodyParser = require('body-parser');
 var Question = require('./Models/question');
 
 //set our port to either a predetermined port number if you have set it up, or 3001
-app.set('port', (process.env.PORT || 3001));
+var port = process.env.API_PORT || 3001;
 
 var mongoose = require('mongoose');
-var mongoURI = "mongodb://localhost:3001/";
-var MongoDB = mongoose.connect('mongodb://heroku_9pwktg9n:fpr8bebiq9sk9jjkdnn3cptlt5@ds147900.mlab.com:47900/heroku_9pwktg9n').connection;
-MongoDB.on('error', function(err) { console.log(err.message); });
-MongoDB.once('open', function() {
-  console.log("mongodb connection open");
-});
+mongoose.connect('mongodb://heroku_9pwktg9n:fpr8bebiq9sk9jjkdnn3cptlt5@ds147900.mlab.com:47900/heroku_9pwktg9n');
 
 //now we should configure the API to use bodyParser and look for JSON data in the request body
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -45,6 +40,14 @@ app.use(function(req, res, next) {
 var api = require('./routes/api');
 app.use('/api', api);
 
-server.listen(app.get('port'), () => {
-  console.log('Server started at http://localhost:' + app.get('port'));
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
+
+  app.get('*', function (req, res){
+    res.sendFile(path.resolve(__dirname, 'client/build', 'index.html'));
+  });
+}
+
+app.listen(port, function() {
+  console.log(`api running on port ${port}`);
 });
