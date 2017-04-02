@@ -6,10 +6,16 @@ function createSession(cb) {
     .then(cb);
 }
 
+function getQuestionBoard(id, cb) {
+  fetch('/api/q/' + id)
+    .then(parseJSON)
+    .then(cb);
+}
+
 function parseJSON(response) {
   return response.json();
 }
 
-const Client = {createSession}
+const Client = {createSession, getQuestionBoard}
 
 export default Client;

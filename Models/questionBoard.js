@@ -2,16 +2,16 @@ var mongoose = require('mongoose');
 var shortid = require('shortid');
 var randomstring = require('randomstring');
 
-var question = require('./question');
+var Question = require('./question');
 
-var questionBoard = new mongoose.Schema({
+var questionBoardSchema = new mongoose.Schema({
   _id: {
     type: String,
     'default': shortid.generate
   },
-  questionBoards: [{
+  questionBoard: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'questionBoard'
+    ref: 'Question'
   }],
   masterKey: {
     type: String,
@@ -19,4 +19,4 @@ var questionBoard = new mongoose.Schema({
   }
 });
 
-module.exports = mongoose.model('QuestionSession', questionBoard);
+module.exports = mongoose.model('questionBoard', questionBoardSchema);

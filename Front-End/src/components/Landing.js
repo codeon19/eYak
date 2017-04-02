@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 
+import { Link } from 'react-router';
+
 import Client from '../front-end';
 
 class Landing extends Component {
