@@ -9,10 +9,14 @@ var questionBoardSchema = new mongoose.Schema({
     type: String,
     'default': shortid.generate
   },
-  questionBoard: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Question'
-  }],
+  questionBoard: [
+    // {
+    //   type: mongoose.Schema.Types.ObjectId,
+    //   ref: 'Question'
+    // }
+
+    Question
+  ],
   masterKey: {
     type: String,
     'default': randomstring.generate
