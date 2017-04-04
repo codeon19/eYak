@@ -15,7 +15,7 @@ class QuestionBoard extends Component {
           masterKey: this.props.location.query.key
         };
 
-        Client.getQuestionBoard("r1QSmnThl", (questionB) => {
+        Client.getQuestionBoard("SyfnH6pnl", (questionB) => {
               if (questionB.doesNotExist) {
                 console.log("Question Board does not exist!");
               } else {
@@ -41,7 +41,7 @@ class QuestionBoard extends Component {
       const questionBoard = this.state.questionBoard.map((question, i) => (
         <Question
           key={question._id}
-          text={question}
+          question ={question}
           index={i}
         />
       ));

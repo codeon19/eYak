@@ -10,12 +10,10 @@ var questionBoardSchema = new mongoose.Schema({
     'default': shortid.generate
   },
   questionBoard: [
-    // {
-    //   type: mongoose.Schema.Types.ObjectId,
-    //   ref: 'Question'
-    // }
-
-    Question
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Question'
+    }
   ],
   masterKey: {
     type: String,
