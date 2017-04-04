@@ -14,7 +14,6 @@ class Landing extends Component {
 
     createSession() {
       Client.createSession((sessionQ) => {
-
         this.props.router.push('/q/' + sessionQ + '/master?key=' + sessionQ.masterKey);
       });
     }
