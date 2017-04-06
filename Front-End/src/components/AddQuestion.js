@@ -42,6 +42,8 @@ class AddQuestion extends React.Component {
     }
 
     this.props.socket.emit('question:add', this.props.qId, data);
+
+    this.setState(this.baseState);
   }
 
   render() {

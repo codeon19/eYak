@@ -35,4 +35,22 @@ router.get('/q/:id', function(req, res) {
   });
 });
 
+/* Check if SongBoard matches master key */
+router.get('/q/:id/master/:key', function(req, res) {
+  QuestionBoard.findOne({ _id: req.params.id }).exec(function(err, songQ) {
+    if (err) {
+      res.json({ error: err });
+    } else {
+      if (questionB) {
+        if (questionB.masterKey === req.params.key)
+          res.json({isMaster: true, message: 'Valid master key'});
+        else
+          res.json({isMaster: false, message: 'Invalid master key'});
+      } else {
+        res.json({doesNotExist: true, message: 'No SongQueue exists with that ID'});
+      }
+    }
+  });
+});
+
 module.exports = router;

@@ -24,7 +24,7 @@ class Landing extends Component {
                 <div className='container'>
                     <div className='row'>
                         <div className='col-md text-center'>
-                            <h2>Join an eYak Session </h2>
+                            <h3>Join an eYak Session </h3>
 
                             <p className='lead'></p>
                             <button className='btn btn-lg btn-primary' onClick={this.createSession}>

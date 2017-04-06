@@ -12,6 +12,12 @@ function getQuestionBoard(id, cb) {
     .then(cb);
 }
 
+function checkMasterKey(id, key, cb) {
+  fetch('/api/q/' + id + '/master/' + key)
+    .then(parseJSON)
+    .then(cb);
+}
+
 function parseJSON(response) {
   return response.json();
 }

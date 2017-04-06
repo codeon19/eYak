@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import logo from './eyak.png';
 import './App.css';
 
 import { Router, Route, browserHistory } from 'react-router'
@@ -15,11 +15,12 @@ class App extends Component {
 
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to eYak</h2>
+          <h1>eYak</h1>
         </div>
 
         <Router history={browserHistory}>
           <Route path='/' component={Landing} />
+          <Route path='/q/:id/' component={QuestionBoard}/>
           <Route path='/q/:id/master' component={QuestionBoard} master={true}/>
         </Router>
 

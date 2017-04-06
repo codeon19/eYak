@@ -71,9 +71,10 @@ io.sockets.on('connection', function(socket) {
             {upsert: true},
             function(err, data) {
               if (!err) {
-
+                  // Now that the quesiton has been created, let's add it to the queue
+                  io.sockets.in(qId).emit('question:add', question);
               } else {
-
+                
               }
             });
           });
