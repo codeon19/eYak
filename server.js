@@ -1,22 +1,18 @@
 //server.js
-'use strict'
+var express = require('express');
 
 //first we import our dependencies...
-var express = require('express');
-var mongoose = require('mongoose');
-var bodyParser = require('body-parser');
-
-var server = require('http').createServer(app);
-
-//and create our instances
 var app = express();
-var router = express.Router();
+var server = require('http').createServer(app);
+var io = require('socket.io')(server);
 
 var bodyParser = require('body-parser');
-var Question = require('./Models/question');
+app.use(bodyParser.json());
 
 //set our port to either a predetermined port number if you have set it up, or 3001
-var port = process.env.API_PORT || 3001;
+// var port = process.env.API_PORT || 3001;
+
+app.set('port', (3001));
 
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://heroku_9pwktg9n:fpr8bebiq9sk9jjkdnn3cptlt5@ds147900.mlab.com:47900/heroku_9pwktg9n');
@@ -48,6 +44,44 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-app.listen(port, function() {
-  console.log(`api running on port ${port}`);
+var Question = require('./Models/question');
+var QuestionBoard = require('./Models/questionBoard');
+
+// Sockets!
+io.sockets.on('connection', function(socket) {
+
+    // Once a client has connected, we expect to get a ping from them saying what board they want to join
+    socket.on('joinB', function(q) {
+        socket.join(q);
+    });
+
+    // When we receive a ping from a client telling to add a song, we update the database then send the data back through Sockets
+    socket.on('question:add', function(qId, data) {
+
+      console.log("Attempting to add Question");
+      // Create a Question then update the appropriate SongQueue
+      QuestionBoard.count({_id: qId}, function(err, count) {
+        if (count > 0) {
+          Question.create({
+            text: data.questionText
+          }, function(err, question) {
+            QuestionBoard.update(
+            {_id: qId},
+            {$push: {'questionBoard': question}},
+            {upsert: true},
+            function(err, data) {
+              if (!err) {
+
+              } else {
+
+              }
+            });
+          });
+        }
+      });
+    });
+});
+
+server.listen(app.get('port'), () => {
+  console.log('Server started at http://localhost:' + app.get('port'));
 });

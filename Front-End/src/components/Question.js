@@ -11,10 +11,10 @@ class Question extends Component {
 
     return (
 
-      <div className="card card-inverse" style={{backgroundColor: '#333'}}>
+      <div className="card">
         <div className="card-block">
-          <h2 className="card-title">{question.text}</h2>
-            <a href="#" class="btn btn-primary">Upvote</a>
+          <h4 className="card-title">{question.text}</h4>
+            <a href="#" className="btn btn-primary">Upvote</a>
         </div>
       </div>
 

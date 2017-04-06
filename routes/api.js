@@ -26,7 +26,6 @@ router.get('/q/:id', function(req, res) {
     if (err) {
       res.json({ error: err });
     } else {
-
       if (questionB) {
         res.json(questionB);
       } else {
