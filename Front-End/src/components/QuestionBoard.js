@@ -15,6 +15,8 @@ class QuestionBoard extends Component {
 
       this.state = {
         questionBoard: [],
+        askQuestion: true,
+        displayQuestion: null,
         master: this.props.route.master,
         masterKey: this.props.location.query.key
       };
@@ -30,6 +32,7 @@ class QuestionBoard extends Component {
           });
 
       this.push = this.push.bind(this);
+      this.switchToAsk = this.switchToAsk.bind(this);
 
       this.socket = io('/');
   }
@@ -66,24 +69,51 @@ class QuestionBoard extends Component {
     })
   }
 
+  handleClick(index) {
+
+    console.log("Question clicked at " + index);
+
+    this.setState({
+      askQuestion: false,
+      displayQuestion: index
+    });
+  }
+
+  switchToAsk() {
+
+    this.setState({
+      askQuestion: true
+    })
+  }
+
   render() {
 
     const questionBoard = this.state.questionBoard.map((question, i) => (
-      <Question
-        key={question._id}
-        question ={question}
-        index={i}
-        socket={this.socket}
-        qId={this.props.params.id}
-      />
+
+      <div onClick={() => this.handleClick(i)}>
+        <Question
+          key={question._id}
+          question={question}
+          index={i}
+          socket={this.socket}
+          qId={this.props.params.id}
+        />
+      </div>
+
     ));
 
       return (
           <div id='questionQueue'>
               <div className='container'>
                 <div className='col-md-7 col-md-push-5'>
-                  <div className='col-md text-center'>
-                    <AddQuestion socket={this.socket} qId={this.props.params.id}/>
+                  <div className="row justify-content-center">
+                    <button className='btn btn-lg btn-primary' onClick={this.switchToAsk}>
+                        Ask Question <i className='glyphicon'></i>
+                    </button>
+                  </div>
+
+                  <div className="row justify-content-center">
+                      {(this.state.askQuestion) ? <AddQuestion socket={this.socket} qId={this.props.params.id}/> : (questionBoard[this.state.displayQuestion])}
                   </div>
                 </div>
 

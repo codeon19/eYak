@@ -15,7 +15,7 @@ class App extends Component {
 
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1>eYak</h1>
+          <h2 className ="header-text">eYak</h2>
         </div>
 
         <Router history={browserHistory}>

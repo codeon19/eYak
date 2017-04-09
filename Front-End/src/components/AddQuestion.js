@@ -6,6 +6,7 @@ class AddQuestion extends React.Component {
 
   constructor(props) {
     super(props);
+
     this.state = {
       value: ''
     };
@@ -51,16 +52,14 @@ class AddQuestion extends React.Component {
 
       <div className="card">
         <div className="card-block">
-          <div className="form-group">
-            <form onSubmit={this.handleSubmit}>
-              <label>
-                Question:
-                <input type="text" value={this.state.value} onChange={this.handleChange} />
-              </label>
 
-              <input className='btn btn-md btn-primary text-right' type="submit" value="Add" />
-            </form>
+          <div className="card-text">
+            <input type="text" value={this.state.value} onChange={this.handleChange} />
           </div>
+
+          <button className='btn btn-primary' onClick={this.handleSubmit}>
+              Add <i className='glyphicon'></i>
+          </button>
         </div>
       </div>
 
