@@ -1,8 +1,16 @@
 //import dependency
 var mongoose = require('mongoose');
 
+var comment = require('./comment');
+
 var QuestionSchema = new mongoose.Schema({
   text: String,
+  commentThread: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'comment'
+    }
+  ],
   upvotes: {
     type: Number,
     'default': 0

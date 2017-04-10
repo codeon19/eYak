@@ -44,6 +44,7 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
+var comment = require('./Models/comment');
 var Question = require('./Models/question');
 var QuestionBoard = require('./Models/questionBoard');
 
@@ -74,13 +75,41 @@ io.sockets.on('connection', function(socket) {
                   // Now that the quesiton has been created, let's add it to the queue
                   io.sockets.in(qId).emit('question:add', question);
               } else {
-                
+
               }
             });
           });
         }
       });
     });
+
+    socket.on('comment:add', function(qId, qKey, _id) {
+
+      QuestionBoard.findOne({_id: qId, masterKey: qKey}, {$oid: _id}, function(err, data) {
+
+        if (!err && data !== null) {
+          console.log("Comment about to be added!");
+
+          comment.create({
+            text: "COMMENTED BITCH"
+          }, function(err, commentToAdd) {
+            data.update(
+            {$push: {'commentThread': commentToAdd}},
+            {upsert: true},
+            function(err, data) {
+              if (!err) {
+                console.log("Comment added!");
+              } else {
+                console.log("Comment not added :(");
+              }
+            });
+          });
+        } else {
+          console.log("Could not find comment :(");
+        }
+      })
+    });
+
 });
 
 server.listen(app.get('port'), () => {
