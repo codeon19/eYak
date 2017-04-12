@@ -1,25 +1,24 @@
 import React, { Component } from 'react';
 
-class Question extends Component {
+class Comment extends Component {
   constructor(props) {
       super(props);
-      
+
   }
 
   render() {
 
-    const question = this.props.question;
+    const comment = this.props.comment;
 
     return (
 
         <div className="card" style={{ borderColor: 333}}>
           <div className="card-block">
-            <h4 className="card-title">{question.text}</h4>
-            <a href="#" className="btn btn-primary">Upvote</a>
+            <h4 className="card-title">{comment.text}</h4>
           </div>
         </div>
     );
   }
 }
 
-export default Question;
+export default Comment;

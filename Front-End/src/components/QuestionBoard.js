@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import Client from '../front-end';
 
 import Question from './Question';
+import QuestionView from './QuestionView';
 import EmptyBoard from './EmptyBoard';
 import AddQuestion from './AddQuestion';
 
@@ -34,7 +35,7 @@ class QuestionBoard extends Component {
       this.push = this.push.bind(this);
       this.switchToAsk = this.switchToAsk.bind(this);
 
-      this.socket = io('/');
+      this.socket = io(this.props.key);
   }
 
   componentDidMount() {
@@ -73,9 +74,19 @@ class QuestionBoard extends Component {
 
     console.log("Question clicked at " + index);
 
+    const questionData = this.state.questionBoard[index]
+
     this.setState({
       askQuestion: false,
-      displayQuestion: index
+      displayQuestion:
+        <QuestionView
+          key={questionData._id}
+          question={questionData}
+          qId={this.props.params.id}
+          socket={this.socket}
+          masterKey={this.state.masterKey}
+        />
+
     });
   }
 
@@ -95,7 +106,6 @@ class QuestionBoard extends Component {
           key={question._id}
           question={question}
           index={i}
-          socket={this.socket}
           qId={this.props.params.id}
           masterKey={this.state.masterKey}
         />
@@ -114,7 +124,7 @@ class QuestionBoard extends Component {
                   </div>
 
                   <div className="row justify-content-center">
-                      {(this.state.askQuestion) ? <AddQuestion socket={this.socket} qId={this.props.params.id}/> : (questionBoard[this.state.displayQuestion])}
+                      {(this.state.askQuestion) ? <AddQuestion socket={this.socket} qId={this.props.params.id}/> : this.state.displayQuestion}
                   </div>
                 </div>
 

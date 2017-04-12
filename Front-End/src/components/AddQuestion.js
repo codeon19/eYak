@@ -14,15 +14,7 @@ class AddQuestion extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.baseState = this.state;
-
-  }
-
-  handleInputChange(event) {
-    const value = event.target;
-
-    this.setState({
-      [name]: value
-    });
+    
   }
 
   handleChange(event) {
