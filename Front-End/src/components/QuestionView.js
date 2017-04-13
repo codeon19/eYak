@@ -7,7 +7,7 @@ import Comments from './Comment';
 import io from 'socket.io-client';
 
 class QuestionView extends Component {
-  
+
   constructor(props) {
       super(props);
 
@@ -20,6 +20,8 @@ class QuestionView extends Component {
             if (commentB.doesNotExist) {
               console.log("Comment Board does not exist!");
             } else {
+              console.log(commentB);
+              console.log("Comment Board currently being set!");
               this.setState({
                 commentBoard: commentB.commentBoard
               })
@@ -29,6 +31,7 @@ class QuestionView extends Component {
       this.push = this.push.bind(this);
       this.handleChange = this.handleChange.bind(this);
       this.handleKeyPress = this.handleKeyPress.bind(this);
+
       this.baseState = this.state;
   }
 
@@ -100,7 +103,7 @@ class QuestionView extends Component {
             </div>
             <input type="text" value={this.state.value} onChange={this.handleChange} onKeyPress={this.handleKeyPress} />
           </div>
-          {(commentBoard)}
+            {(this.state.commentBoard.length != 0) ? (commentBoard) : <div></div>}
         </div>
     );
   }

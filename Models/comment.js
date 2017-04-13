@@ -3,6 +3,7 @@ var mongoose = require('mongoose');
 
 var commentSchema = new mongoose.Schema({
   text: String,
+  question_id: String,
   upvotes: {
     type: Number,
     'default': 0

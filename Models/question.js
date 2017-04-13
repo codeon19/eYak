@@ -5,7 +5,7 @@ var comment = require('./comment');
 
 var QuestionSchema = new mongoose.Schema({
   text: String,
-  commentThread: [
+  commentBoard: [
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'comment'

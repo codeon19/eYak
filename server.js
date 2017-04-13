@@ -1,5 +1,6 @@
 //server.js
 var express = require('express');
+ObjectId = require('mongodb').ObjectID;
 
 //first we import our dependencies...
 var app = express();
@@ -53,6 +54,7 @@ io.sockets.on('connection', function(socket) {
 
     // Once a client has connected, we expect to get a ping from them saying what board they want to join
     socket.on('joinB', function(q) {
+        console.log(q + " added into sockets!")
         socket.join(q);
     });
 
@@ -62,6 +64,7 @@ io.sockets.on('connection', function(socket) {
       console.log("Attempting to add Question");
       // Create a Question then update the appropriate SongQueue
       QuestionBoard.count({_id: qId}, function(err, count) {
+
         if (count > 0) {
           Question.create({
             text: data.questionText
@@ -74,8 +77,6 @@ io.sockets.on('connection', function(socket) {
               if (!err) {
                   // Now that the quesiton has been created, let's add it to the queue
                   io.sockets.in(qId).emit('question:add', question);
-              } else {
-
               }
             });
           });
@@ -83,33 +84,27 @@ io.sockets.on('connection', function(socket) {
       });
     });
 
-    socket.on('comment:add', function(qId, qKey, _id) {
+    socket.on('comment:add', function(qId, qKey, _id, data) {
 
-      QuestionBoard.findOne({_id: qId, masterKey: qKey}, {$oid: _id}, function(err, data) {
+    Question.findOne({"_id": ObjectId(_id)} , function(err, questionCB) {
 
-        if (!err && data !== null) {
-          console.log("Comment about to be added!");
-
+        if (!err && questionCB !== null) {
           comment.create({
-            text: "COMMENTED BITCH"
+            text: data.commentText,
+            question_id: _id
           }, function(err, commentToAdd) {
-            data.update(
-            {$push: {'commentThread': commentToAdd}},
+            questionCB.update(
+            {$push: {'commentBoard': commentToAdd}},
             {upsert: true},
             function(err, data) {
               if (!err) {
-                console.log("Comment added!");
-              } else {
-                console.log("Comment not added :(");
+                io.sockets.in(qId).emit('comment:add', commentToAdd);
               }
             });
           });
-        } else {
-          console.log("Could not find comment :(");
         }
       })
     });
-
 });
 
 server.listen(app.get('port'), () => {

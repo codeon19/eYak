@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
+ObjectId = require('mongodb').ObjectID;
+
 var QuestionBoard = require('../Models/questionBoard');
 var Question = require('../Models/question');
 
@@ -30,6 +32,22 @@ router.get('/q/:id', function(req, res) {
         res.json(questionB);
       } else {
         res.json({doesNotExist: true, message: 'No SongQueue exists with that ID'});
+      }
+    }
+  });
+});
+
+/* Get commentBoard */
+router.get('/c/:_id', function(req, res) {
+  
+  Question.findOne({"_id": ObjectId(req.params._id)}).populate('commentBoard').exec(function(err, commentB) {
+    if (err) {
+      res.json({ error: err });
+    } else {
+      if (commentB) {
+        res.json(commentB);
+      } else {
+        res.json({doesNotExist: true, message: 'No commentBoard exists with that ID'});
       }
     }
   });

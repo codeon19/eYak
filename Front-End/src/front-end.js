@@ -13,7 +13,7 @@ function getQuestionBoard(id, cb) {
 }
 
 function getCommentBoard(_id, cb) {
-  fetch('/api/q/c/' + _id)
+  fetch('/api/c/' + _id)
   .then(parseJSON)
   .then(cb);
 }
