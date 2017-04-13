@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 
+import '../App.css';
+
 class Question extends Component {
   constructor(props) {
       super(props);
-      
+
   }
 
   render() {
@@ -11,13 +13,10 @@ class Question extends Component {
     const question = this.props.question;
 
     return (
-
-        <div className="card" style={{ borderColor: 333}}>
           <div className="card-block">
             <h4 className="card-title">{question.text}</h4>
             <a href="#" className="btn btn-primary">Upvote</a>
           </div>
-        </div>
     );
   }
 }

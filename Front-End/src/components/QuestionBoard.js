@@ -101,7 +101,7 @@ class QuestionBoard extends Component {
 
     const questionBoard = this.state.questionBoard.map((question, i) => (
 
-      <div onClick={() => this.handleClick(i)}>
+      <div className="card" onClick={() => this.handleClick(i)}>
         <Question
           key={question._id}
           question={question}

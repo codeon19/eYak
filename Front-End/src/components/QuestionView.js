@@ -32,7 +32,6 @@ class QuestionView extends Component {
       this.handleChange = this.handleChange.bind(this);
       this.handleKeyPress = this.handleKeyPress.bind(this);
 
-      this.baseState = this.state;
   }
 
   componentDidMount() {
@@ -77,7 +76,9 @@ class QuestionView extends Component {
       }
       this.props.socket.emit('comment:add', this.props.qId, this.props.masterKey, this.props.question._id, data);
 
-      this.setState(this.baseState);
+      this.setState({
+        value: ''
+      });
     }
   }
 
