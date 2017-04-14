@@ -14,7 +14,7 @@ class AddQuestion extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.baseState = this.state;
-    
+
   }
 
   handleChange(event) {
@@ -42,14 +42,14 @@ class AddQuestion extends React.Component {
   render() {
     return (
 
-      <div className="card">
+      <div>
         <div className="card-block">
 
           <div className="card-text">
             <input type="text" value={this.state.value} onChange={this.handleChange} />
           </div>
 
-          <button className='btn btn-primary' onClick={this.handleSubmit}>
+          <button className='btn btn-primary' style={{ marginTop:20 }} onClick={this.handleSubmit}>
               Add <i className='glyphicon'></i>
           </button>
         </div>

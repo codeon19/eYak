@@ -9,6 +9,8 @@ import AddQuestion from './AddQuestion';
 
 import io from 'socket.io-client';
 
+import Card from './GUIcomponents/Card';
+
 class QuestionBoard extends Component {
 
   constructor(props) {
@@ -16,7 +18,7 @@ class QuestionBoard extends Component {
 
       this.state = {
         questionBoard: [],
-        askQuestion: true,
+        askQuestion: false,
         displayQuestion: null,
         master: this.props.route.master,
         masterKey: this.props.location.query.key
@@ -86,7 +88,6 @@ class QuestionBoard extends Component {
           socket={this.socket}
           masterKey={this.state.masterKey}
         />
-
     });
   }
 
@@ -101,7 +102,7 @@ class QuestionBoard extends Component {
 
     const questionBoard = this.state.questionBoard.map((question, i) => (
 
-      <div className="card" onClick={() => this.handleClick(i)}>
+      <div onClick={() => this.handleClick(i)}>
         <Question
           key={question._id}
           question={question}
