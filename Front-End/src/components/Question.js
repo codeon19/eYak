@@ -39,7 +39,7 @@ class Question extends Component {
       <Card>
          <div className="row">
             <div className="col-md-8">
-               <h5 className="card-title">{question.text}</h5>
+               <h6 className="card-title">{question.text}</h6>
             </div>
             <div className="col-md-3">
                <a href="#" className="btn btn-primary" onClick={this.handleClick("upvote")}>Up</a>

@@ -102,7 +102,7 @@ class QuestionBoard extends Component {
 
     const questionBoard = this.state.questionBoard.map((question, i) => (
 
-      <div onClick={() => this.handleClick(i)}>
+      <div style={{ marginTop: 30 }} onClick={() => this.handleClick(i)}>
         <Question
           key={question._id}
           question={question}
@@ -119,7 +119,7 @@ class QuestionBoard extends Component {
           <div id='questionQueue'>
               <div className='container'>
                 <div className='col-md-7 col-md-push-5'>
-                  <div className="row justify-content-center">
+                  <div className="row justify-content-center" id="addQuestionButton">
                     <button className='btn btn-lg btn-primary' onClick={this.switchToAsk}>
                         Ask Question <i className='glyphicon'></i>
                     </button>

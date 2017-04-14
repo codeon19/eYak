@@ -87,35 +87,37 @@ class QuestionView extends Component {
     const question = this.props.question;
 
     const commentBoard = this.state.commentBoard.map((comment, i) => (
-      <Card>
-         <Comments
-            key={comment._id}
-            comment={comment}
-            index={i}
-         />
-      </Card>
+      <div style={{ marginTop: 10 }}>
+         <Card>
+            <Comments
+               key={comment._id}
+               comment={comment}
+               index={i}
+            />
+         </Card>
+      </div>
     ));
 
     return (
 
-        <div>
-         <Card>
-            <div className="row">
-               <div className="col-md-7">
-                  <h4 className="card-title">{question.text}</h4>
+        <div style={{ marginTop: 20 }}>
+            <Card>
+               <div className="row">
+                  <div className="col-md-8">
+                     <h4 className="card-title">{question.text}</h4>
+                  </div>
+                  <div className="col-md-4">
+                     <a href="#" className="btn btn-primary">Upvote</a>
+                  </div>
                </div>
-               <div className="col-md-5">
-                  <a href="#" className="btn btn-primary">Upvote</a>
+               <div className="row">
+                  <div className="col-md-4">
+                     <p>10:54 am</p>
+                  </div>
                </div>
-            </div>
-            <div className="row">
-               <div className="col-md-4">
-                  <p>10:54 am</p>
-               </div>
-            </div>
-         </Card>
-         <input style={{ marginTop: 20 }} type="text" value={this.state.value} onChange={this.handleChange} onKeyPress={this.handleKeyPress} />
-            {(this.state.commentBoard.length != 0) ? (commentBoard) : <div></div>}
+            </Card>
+            <input style={{ marginTop: 20 }} type="text" value={this.state.value} onChange={this.handleChange} onKeyPress={this.handleKeyPress} />
+               {(this.state.commentBoard.length != 0) ? (commentBoard) : <div></div>}
         </div>
     );
   }
