@@ -11,11 +11,7 @@ var QuestionSchema = new mongoose.Schema({
       ref: 'comment'
     }
   ],
-  upvotes: {
-    type: Number,
-    'default': 0
-  },
-  downvotes: {
+  votes: {
     type: Number,
     'default': 0
   }

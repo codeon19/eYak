@@ -85,26 +85,45 @@ io.sockets.on('connection', function(socket) {
     });
 
     socket.on('comment:add', function(qId, qKey, _id, data) {
+      Question.findOne({"_id": ObjectId(_id)} , function(err, questionCB) {
 
-    Question.findOne({"_id": ObjectId(_id)} , function(err, questionCB) {
+          if (!err && questionCB !== null) {
+            comment.create({
+              text: data.commentText,
+              question_id: _id
+            }, function(err, commentToAdd) {
+              questionCB.update(
+              {$push: {'commentBoard': commentToAdd}},
+              {upsert: true},
+              function(err, data) {
+                if (!err) {
+                  io.sockets.in(qId).emit('comment:add', commentToAdd);
+                }
+              });
+            });
+          }
+        })
+    });
+
+    socket.on('question:vote', function(_id, updateVal) {
+
+      console.log(updateVal);
+
+      Question.findOne({"_id": ObjectId(_id)} , function(err, questionCB) {
 
         if (!err && questionCB !== null) {
-          comment.create({
-            text: data.commentText,
-            question_id: _id
-          }, function(err, commentToAdd) {
-            questionCB.update(
-            {$push: {'commentBoard': commentToAdd}},
+          questionCB.update(
+            {$inc: {'votes': Number(updateVal)}},
             {upsert: true},
             function(err, data) {
               if (!err) {
-                io.sockets.in(qId).emit('comment:add', commentToAdd);
+                  io.sockets.in(qId).emit('comment:add', questionCB);
               }
             });
-          });
-        }
-      })
+          }
+      });
     });
+
 });
 
 server.listen(app.get('port'), () => {

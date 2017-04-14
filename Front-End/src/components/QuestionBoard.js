@@ -109,6 +109,7 @@ class QuestionBoard extends Component {
           index={i}
           qId={this.props.params.id}
           masterKey={this.state.masterKey}
+          socket={this.socket}
         />
       </div>
 

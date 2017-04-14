@@ -1,11 +1,9 @@
 import React, {Component} from 'react';
 
-import Client from '../front-end';
-
-import Comments from './Comment';
-
 import io from 'socket.io-client';
 
+import Client from '../front-end';
+import Comments from './Comment';
 import Card from './GUIcomponents/Card';
 
 class QuestionView extends Component {
@@ -33,7 +31,6 @@ class QuestionView extends Component {
       this.push = this.push.bind(this);
       this.handleChange = this.handleChange.bind(this);
       this.handleKeyPress = this.handleKeyPress.bind(this);
-
   }
 
   componentDidMount() {
@@ -76,6 +73,7 @@ class QuestionView extends Component {
       const data = {
         commentText: commentText
       }
+
       this.props.socket.emit('comment:add', this.props.qId, this.props.masterKey, this.props.question._id, data);
 
       this.setState({
