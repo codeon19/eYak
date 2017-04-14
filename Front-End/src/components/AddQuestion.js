@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import Client from '../front-end';
 
+import Card from './GUIcomponents/Card';
+
 class AddQuestion extends React.Component {
 
   constructor(props) {
@@ -42,17 +44,15 @@ class AddQuestion extends React.Component {
   render() {
     return (
 
-      <div>
-        <div className="card-block">
+      <div style={{ marginTop: 20, textAlign: 'center' }}>
 
-          <div className="card-text">
-            <input type="text" value={this.state.value} onChange={this.handleChange} />
-          </div>
-
-          <button className='btn btn-primary' style={{ marginTop:20 }} onClick={this.handleSubmit}>
-              Add <i className='glyphicon'></i>
-          </button>
-        </div>
+            <input type="text" id="askQuestionInput" class="form-control" placeholder="Ask question here"
+               value={this.state.value} onChange={this.handleChange}>
+            </input>
+            <button id="submitQuestionButton" className="btn-primary" onClick={this.handleSubmit}>
+               Add <i className='glyphicon'></i>
+            </button>
+         
       </div>
 
     );

@@ -27,9 +27,9 @@ const styles = {
    //  elevation: 1,
      marginLeft: 20,
      marginRight: 20,
-     marginTop: 20,
-     paddingTop: 30,
-     paddingBottom: 10,
+     paddingTop: 20,
+     paddingBottom: 20,
+     paddingLeft: 24,
      borderRadius: 3,
      //boxShadow: '10px 10px 5px 0px rgba(0,0,0,0.75)',
      backgroundColor: '#4adfdf'

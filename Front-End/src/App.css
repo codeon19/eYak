@@ -1,5 +1,31 @@
-.App {
+.App-header {
   text-align: center;
+}
+
+.col {
+   vertical-align: center;
+}
+
+#addQuestionButton {
+   text-align: center;
+}
+
+#askQuestionInput {
+   width: 65%;
+   padding-top: 5px;
+   padding-left: 5px;
+   padding-bottom: 5px;
+   border-width: 0px;
+   margin-right: 20px;
+   border-radius: 3px;
+   /*background-color: inherit;*/
+}
+
+#submitQuestionButton {
+   width: 10%;
+   padding-top: 5px;
+   border-radius: 5px;
+   padding: .375rem;
 }
 
 .App-logo {

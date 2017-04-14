@@ -13,7 +13,7 @@ class Comment extends Component {
     return (
 
         <div>
-          <h4 className="card-title">{comment.text}</h4>
+          <h6 className="card-title">{comment.text}</h6>
         </div>
     );
   }
