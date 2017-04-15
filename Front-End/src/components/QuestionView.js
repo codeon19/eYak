@@ -116,8 +116,10 @@ class QuestionView extends Component {
                   </div>
                </div>
             </Card>
-            <input style={{ marginTop: 20 }} type="text" value={this.state.value} onChange={this.handleChange} onKeyPress={this.handleKeyPress} />
-               {(this.state.commentBoard.length != 0) ? (commentBoard) : <div></div>}
+            <input style={{ marginTop: 20 }} type="text" id="addCommentInput" class="form-control" placeholder="Comment on this question here"
+               value={this.state.value} onChange={this.handleChange} onKeyPress={this.handleKeyPress} >
+            </input>
+            {(this.state.commentBoard.length != 0) ? (commentBoard) : <div></div>}
         </div>
     );
   }

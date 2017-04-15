@@ -41,16 +41,14 @@ class Question extends Component {
             <div className="col-md-8">
                <h6 className="card-title">{question.text}</h6>
             </div>
-            <div className="col-md-3">
+            <div className="col-md-3" style={{ textAlign: 'center' }}>
                <a href="#" className="btn btn-primary" onClick={this.handleClick("upvote")}>Up</a>
-            </div>
-            <div className="col-md-3">
+               <p> {this.state.votes} </p>
                <a href="#" className="btn btn-primary" onClick={this.handleClick("downvote")}>Down</a>
             </div>
          </div>
          <div className="row">
             <div className="col-md-4">
-              <p> {this.state.votes} </p>
                <p>10:54 am</p>
             </div>
          </div>

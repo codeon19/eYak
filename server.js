@@ -117,7 +117,7 @@ io.sockets.on('connection', function(socket) {
             {upsert: true},
             function(err, data) {
               if (!err) {
-                  io.sockets.in(qId).emit('comment:add', questionCB);
+                  io.sockets.in(_id).emit('comment:add', questionCB);
               }
             });
           }
