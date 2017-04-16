@@ -74,6 +74,7 @@ class QuestionBoard extends Component {
 
   handleClick(index) {
 
+
     console.log("Question clicked at " + index);
 
     const questionData = this.state.questionBoard[index]
@@ -102,7 +103,7 @@ class QuestionBoard extends Component {
 
     const questionBoard = this.state.questionBoard.map((question, i) => (
 
-      <div style={{ marginTop: 30 }} onClick={() => this.handleClick(i)}>
+      // <div style={{ marginTop: 30 }} onClick={() => this.handleClick(i)}>
         <Question
           key={question._id}
           question={question}
@@ -111,7 +112,7 @@ class QuestionBoard extends Component {
           masterKey={this.state.masterKey}
           socket={this.socket}
         />
-      </div>
+      // </div>
 
     ));
 

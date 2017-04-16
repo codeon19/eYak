@@ -105,9 +105,7 @@ io.sockets.on('connection', function(socket) {
         })
     });
 
-    socket.on('question:vote', function(_id, updateVal) {
-
-      console.log(updateVal);
+    socket.on('question:vote', function(qId, _id, updateVal) {
 
       Question.findOne({"_id": ObjectId(_id)} , function(err, questionCB) {
 
@@ -117,7 +115,11 @@ io.sockets.on('connection', function(socket) {
             {upsert: true},
             function(err, data) {
               if (!err) {
-                  io.sockets.in(_id).emit('comment:add', questionCB);
+                  Question.findOne({"_id": ObjectId(_id)} , function(err, questionUpdated) {
+                      if (!err && questionUpdated !== null) {
+                          io.sockets.in(qId).emit("question:vote", questionUpdated);
+                      }
+                  });
               }
             });
           }

@@ -14,20 +14,31 @@ class Question extends Component {
         votes: this.props.question.votes
       };
 
+      this.vote = this.vote.bind(this);
       this.handleClick = this.handleClick.bind(this);
   }
 
   componentDidMount() {
 
-    this.props.socket.on("question:vote",this.push);
+    this.props.socket.on("question:vote", this.vote);
+  }
+
+  vote(data) {
+
+    if(data._id == this.props.question._id) {
+
+      this.setState({
+        votes: data.votes
+      })
+    }
   }
 
   handleClick(type) {
 
     if(type == "upvote") {
-        this.props.socket.emit("question:vote", this.props.question._id, 1);
+        this.props.socket.emit("question:vote", this.props.qId, this.props.question._id, 1);
     } else if (type =="downvote"){
-        this.props.socket.emit("question:vote", this.props.question._id, -1);
+        this.props.socket.emit("question:vote", this.props.qId, this.props.question._id, -1);
     }
   }
 
@@ -42,9 +53,9 @@ class Question extends Component {
                <h6 className="card-title">{question.text}</h6>
             </div>
             <div className="col-md-3" style={{ textAlign: 'center' }}>
-               <a href="#" className="btn btn-primary" onClick={this.handleClick("upvote")}>Up</a>
+               <button className="btn btn-primary" onClick={() => {this.handleClick("upvote")}}>Up</button>
                <p> {this.state.votes} </p>
-               <a href="#" className="btn btn-primary" onClick={this.handleClick("downvote")}>Down</a>
+               <button className="btn btn-primary" onClick={() => {this.handleClick("downvote")}}>Down</button>
             </div>
          </div>
          <div className="row">

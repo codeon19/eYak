@@ -46,13 +46,13 @@ class AddQuestion extends React.Component {
 
       <div style={{ marginTop: 20, textAlign: 'center' }}>
 
-            <input type="text" id="askQuestionInput" class="form-control" placeholder="Ask question here"
+            <input type="text" id="askQuestionInput" className="form-control" placeholder="Ask question here"
                value={this.state.value} onChange={this.handleChange}>
             </input>
             <button id="submitQuestionButton" className="btn-primary" onClick={this.handleSubmit}>
                Add <i className='glyphicon'></i>
             </button>
-         
+
       </div>
 
     );
