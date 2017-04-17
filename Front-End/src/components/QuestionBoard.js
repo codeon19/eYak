@@ -23,7 +23,8 @@ class QuestionBoard extends Component {
         askQuestion: false,
         displayQuestion: null,
         master: this.props.route.master,
-        masterKey: this.props.location.query.key
+        masterKey: this.props.location.query.key,
+        sortType: "time"
       };
 
       Client.getQuestionBoard(this.props.params.id, (questionB) => {
@@ -40,6 +41,8 @@ class QuestionBoard extends Component {
       this.switchToAsk = this.switchToAsk.bind(this);
 
       this.socket = io(this.props.key);
+
+      this.onChange = this.onChange.bind(this);
   }
 
   componentDidMount() {
@@ -109,9 +112,17 @@ class QuestionBoard extends Component {
     })
   }
 
+  onChange(i, value, tab, ev) {
+    this.setState({ sortType: value });
+  }
+
   render() {
-    this.state.questionBoard.sort((a, b) => (Date.parse(a.time) < Date.parse(b.time)));
-    //this.state.questionBoard.sort((a, b) => (a.votes < b.votes));
+    if (this.state.sortType == "time") {
+      this.state.questionBoard.sort((a, b) => (Date.parse(a.time) < Date.parse(b.time)));
+    }
+    else {
+      this.state.questionBoard.sort((a, b) => (a.votes < b.votes));
+    }
 
     const questionBoard = this.state.questionBoard.map((question, i) => (
       <div style={{ marginTop: 30 }}>
@@ -145,9 +156,9 @@ class QuestionBoard extends Component {
 
                 <div className='col-md-5 col-md-pull-7'>
                   <div style={{ textAlign: 'center' }}>
-                     <Tabs defaultSelectedIndex={1}>
-                        <Tab label="New"></Tab>
-                        <Tab label="Hot"></Tab>
+                     <Tabs onChange={this.onChange} defaultSelectedIndex={0}>
+                        <Tab value="time" label="New"></Tab>
+                        <Tab value="votes" label="Hot"></Tab>
                      </Tabs>
                   </div>
                   <div className='col-md text-center'>
