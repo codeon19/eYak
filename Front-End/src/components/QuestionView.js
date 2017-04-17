@@ -5,6 +5,7 @@ import io from 'socket.io-client';
 import Client from '../front-end';
 import Comments from './Comment';
 import Card from './GUIcomponents/Card';
+import Voter from './GUIcomponents/Voter';
 
 class QuestionView extends Component {
 
@@ -103,19 +104,26 @@ class QuestionView extends Component {
         <div style={{ marginTop: 20 }}>
             <Card>
                <div className="row">
-                  <div className="col-md-8">
-                     <h4 className="card-title">{question.text}</h4>
+                  <div className="col-md-9" style={{ paddingTop: 10, paddingBottom: 10 }} onClick={this.props.makeFocus}>
+                     <div className="row">
+                        <h6 style={{ marginLeft: 10 }} className="card-title">{question.text}</h6>
+                     </div>
+                     <div className="row">
+                        <div className="col-md-4" style={{ paddingTop: 30 }}>
+                           <p style={{ marginBottom: 0 }}>10:54 am</p>
+                        </div>
+                     </div>
                   </div>
-                  <div className="col-md-4">
-                     <a href="#" className="btn btn-primary">Upvote</a>
-                  </div>
-               </div>
-               <div className="row">
-                  <div className="col-md-4">
-                     <p>10:54 am</p>
+                  <div className="col-md-3" style={{ textAlign: 'center' }}>
+                     <Voter
+                        socket={this.props.socket}
+                        question={question}
+                        qId={this.props.qId}
+                     />
                   </div>
                </div>
             </Card>
+
             <input style={{ marginTop: 20 }} type="text" id="addCommentInput" className="form-control" placeholder="Comment on this question here"
                value={this.state.value} onChange={this.handleChange} onKeyPress={this.handleKeyPress} >
             </input>

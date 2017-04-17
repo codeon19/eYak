@@ -16,19 +16,10 @@ class Card extends Component {
 
 const styles = {
   containerStyle: {
-   //  borderWidth: 1,
-   //  borderRadius: 2,
-   //  borderColor: '#ddd',
-   //  borderBottomWidth: 0,
-   //  shadowColor: '#000',
-   //  shadowOffset: { width: 0, height: 2 },
-   //  shadowOpacity: 0.1,
-   //  shadowRadius: 2,
-   //  elevation: 1,
      marginLeft: 20,
      marginRight: 20,
      paddingTop: 20,
-     paddingBottom: 20,
+     paddingBottom: 10,
      paddingLeft: 24,
      borderRadius: 3,
      //boxShadow: '10px 10px 5px 0px rgba(0,0,0,0.75)',

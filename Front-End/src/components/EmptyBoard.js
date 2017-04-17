@@ -5,7 +5,7 @@ const EmptyBoard = () => {
     <div className='row'>
       <div className='col-md-12'>
 
-            <h1>The Question Board is empty</h1>
+            <h3>The Question Board is empty</h3>
       </div>
     </div>
   );
