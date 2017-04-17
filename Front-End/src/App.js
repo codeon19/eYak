@@ -6,6 +6,7 @@ import { Router, Route, browserHistory } from 'react-router'
 
 import Landing from './components/Landing';
 import QuestionBoard from './components/QuestionBoard';
+import JoinBoard from './components/JoinBoard';
 
 class App extends Component {
 
@@ -20,8 +21,9 @@ class App extends Component {
 
         <Router history={browserHistory}>
           <Route path='/' component={Landing} />
-          <Route path='/q/:id/' component={QuestionBoard}/>
+          <Route path='/q/:id' component={QuestionBoard}/>
           <Route path='/q/:id/master' component={QuestionBoard} master={true}/>
+          <Route path='/join' component={JoinBoard} />
         </Router>
 
       </div>
