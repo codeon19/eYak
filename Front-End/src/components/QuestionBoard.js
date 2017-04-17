@@ -77,6 +77,16 @@ class QuestionBoard extends Component {
   handleClick(index) {
     console.log("Question clicked at " + index);
 
+    Client.getQuestionBoard(this.props.params.id, (questionB) => {
+          if (questionB.doesNotExist) {
+            console.log("Question Board does not exist!");
+          } else {
+            this.setState({
+              questionBoard: questionB.questionBoard
+            })
+          }
+        });
+
     const questionData = this.state.questionBoard[index]
 
     this.setState({

@@ -36,6 +36,8 @@ class QuestionView extends Component {
 
   componentDidMount() {
 
+
+
     this.props.socket.on('comment:add',this.push);
   }
 

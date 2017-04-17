@@ -33,7 +33,7 @@ class Voter extends Component {
    vote(data) {
 
      if(data._id == this.props.question._id) {
-
+       
        this.setState({
          votes: data.votes
        })
