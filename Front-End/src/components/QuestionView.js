@@ -84,7 +84,7 @@ class QuestionView extends Component {
   }
 
   render() {
-
+    let wasDate = Date.parse('16 April 00:00');
     const question = this.props.question;
 
     const commentBoard = this.state.commentBoard.map((comment, i) => (
@@ -104,13 +104,13 @@ class QuestionView extends Component {
         <div style={{ marginTop: 20 }}>
             <Card>
                <div className="row">
-                  <div className="col-md-9" style={{ paddingTop: 10, paddingBottom: 10 }} onClick={this.props.makeFocus}>
+                  <div className="col-md-9" style={{ paddingTop: 10, paddingBottom: 10 }}>
                      <div className="row">
                         <h6 style={{ marginLeft: 10 }} className="card-title">{question.text}</h6>
                      </div>
                      <div className="row">
                         <div className="col-md-4" style={{ paddingTop: 30 }}>
-                           <p style={{ marginBottom: 0 }}>10:54 am</p>
+                           <p style={{ marginBottom: 0 }}>{this.props.question.time}</p>
                         </div>
                      </div>
                   </div>
@@ -134,3 +134,11 @@ class QuestionView extends Component {
 }
 
 export default QuestionView;
+
+//<div className="col-md-3" style={{ textAlign: 'center' }}>
+   //<Voter
+      //socket={this.props.socket}
+      //question={question}
+      //qId={this.props.qId}
+   ///>
+//</div>

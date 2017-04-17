@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Time from 'react-time';
 
 import Client from '../front-end';
 
@@ -25,15 +26,19 @@ class AddQuestion extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    let now = new Date();
 
     const questionText = this.state.value;
+    const questionTime = now.getMonth() + "/" + now.getDate() + "/" + now.getFullYear() + " " + now.getHours() + ":" + now.getMinutes();
+    console.log(questionTime);
     if (questionText === '') {
       this.setState({ error: 'Invalid Question. '});
       return;
     }
 
     const data = {
-      questionText: questionText
+      questionText: questionText,
+      questionTime: questionTime
     }
 
     this.props.socket.emit('question:add', this.props.qId, data);

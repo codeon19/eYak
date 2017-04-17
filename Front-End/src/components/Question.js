@@ -55,19 +55,19 @@ class Question extends Component {
   // }
 
   render() {
-
+    let now = new Date();
     const question = this.props.question;
 
     return (
       <Card>
-         <div className="row">
-            <div className="col-md-9" style={{ paddingTop: 10, paddingBottom: 10 }} onClick={this.props.makeFocus}>
+         <div className="row" onClick={this.props.makeFocus}>
+            <div className="col-md-9" style={{ paddingTop: 10, paddingBottom: 10 }}>
                <div className="row">
                   <h6 style={{ marginLeft: 10 }} className="card-title">{question.text}</h6>
                </div>
                <div className="row">
-                  <div className="col-md-4" style={{ paddingTop: 30 }}>
-                     <p style={{ marginBottom: 0 }}>10:54 am</p>
+                  <div className="col-md-6" style={{ paddingTop: 30 }}>
+                     <p style={{ marginBottom: 0 }}>{this.props.question.time}</p>
                   </div>
                </div>
             </div>

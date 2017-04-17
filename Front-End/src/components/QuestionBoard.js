@@ -1,4 +1,8 @@
 import React, {Component} from 'react';
+import ReactDOM from 'react-dom';
+import Tabs from 'muicss/lib/react/tabs';
+import Tab from 'muicss/lib/react/tab';
+import Time from 'react-time';
 
 import Client from '../front-end';
 
@@ -8,8 +12,6 @@ import EmptyBoard from './EmptyBoard';
 import AddQuestion from './AddQuestion';
 
 import io from 'socket.io-client';
-
-import Card from './GUIcomponents/Card';
 
 class QuestionBoard extends Component {
 
@@ -98,9 +100,10 @@ class QuestionBoard extends Component {
   }
 
   render() {
+    this.state.questionBoard.sort((a, b) => (Date.parse(a.time) < Date.parse(b.time)));
+    //this.state.questionBoard.sort((a, b) => (a.votes < b.votes));
 
     const questionBoard = this.state.questionBoard.map((question, i) => (
-
       <div style={{ marginTop: 30 }}>
         <Question
           makeFocus={() => this.handleClick(i)}
@@ -131,6 +134,12 @@ class QuestionBoard extends Component {
                 </div>
 
                 <div className='col-md-5 col-md-pull-7'>
+                  <div style={{ textAlign: 'center' }}>
+                     <Tabs defaultSelectedIndex={1}>
+                        <Tab label="New"></Tab>
+                        <Tab label="Hot"></Tab>
+                     </Tabs>
+                  </div>
                   <div className='col-md text-center'>
                       {(this.state.questionBoard.length !== 0) ? (questionBoard) : (<EmptyBoard key='emptyBoard'/>)}
                   </div>

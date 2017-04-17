@@ -67,7 +67,8 @@ io.sockets.on('connection', function(socket) {
 
         if (count > 0) {
           Question.create({
-            text: data.questionText
+            text: data.questionText,
+            time: data.questionTime
           }, function(err, question) {
             QuestionBoard.update(
             {_id: qId},
@@ -90,7 +91,7 @@ io.sockets.on('connection', function(socket) {
           if (!err && questionCB !== null) {
             comment.create({
               text: data.commentText,
-              question_id: _id
+              question_id: _id,
             }, function(err, commentToAdd) {
               questionCB.update(
               {$push: {'commentBoard': commentToAdd}},
