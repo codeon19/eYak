@@ -155,15 +155,17 @@ class QuestionBoard extends Component {
                 </div>
 
                 <div className='col-md-5 col-md-pull-7'>
-                  <div style={{ textAlign: 'center' }}>
-                     <Tabs onChange={this.onChange} defaultSelectedIndex={0}>
-                        <Tab value="time" label="New"></Tab>
-                        <Tab value="votes" label="Hot"></Tab>
-                     </Tabs>
-                  </div>
-                  <div className='col-md text-center'>
-                      {(this.state.questionBoard.length !== 0) ? (questionBoard) : (<EmptyBoard key='emptyBoard'/>)}
-                  </div>
+                  {(this.state.questionBoard.length !== 0) ? (
+                     <div><div style={{ textAlign: 'center' }}>
+                        <Tabs onChange={this.onChange} defaultSelectedIndex={0}>
+                           <Tab value="time" label="New"></Tab>
+                           <Tab value="votes" label="Hot"></Tab>
+                        </Tabs>
+                     </div>
+                     <div className='col-md text-center'>
+                         { questionBoard }
+                     </div></div>
+                  ) : (<EmptyBoard key='emptyBoard'/>)}
                 </div>
               </div>
           </div>

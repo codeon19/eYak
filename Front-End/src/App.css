@@ -6,6 +6,10 @@
    vertical-align: center;
 }
 
+#joinQueue {
+   margin-top: 50px;
+}
+
 #addQuestionButton {
    text-align: center;
 }

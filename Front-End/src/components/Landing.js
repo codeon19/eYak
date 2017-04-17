@@ -13,11 +13,12 @@ class Landing extends Component {
 
     createSession() {
       Client.createSession((sessionQ) => {
+        console.log(sessionQ._id);
         this.props.router.push('/q/' + sessionQ._id + '/master?key=' + sessionQ.masterKey);
       });
-    }
+   }
 
-    createSession() {
+    joinSession() {
       Client.joinSession((sessionQ) => {
         this.props.router.push('/q/' + sessionQ._id + '/master?key=' + sessionQ.masterKey);
       });
@@ -25,18 +26,18 @@ class Landing extends Component {
 
     render() {
         return (
-            <div id='landing'>
+            <div id='landing' style={{ textAlign: 'center' }}>
                 <div className='container'>
                     <div className='row'>
                         <div className='col-md text-center'>
                             <h4> Welcome to eYak! Get started by starting or joining a session. </h4>
 
                             <p className='lead'></p>
-                            <button className='btn btn-lg btn-primary' onClick={this.createSession}>
+                            <button className='btn btn-lg btn-primary' onClick={this.createSession} style={{ marginRight: 40 }}>
                                 Professor <i className='glyphicon'></i>
                             </button>
 
-                            <Link to={'/join'} className='btn btn-lg btn-primary' onClick={this.joinSession}>
+                            <Link to={'/join'} className='btn btn-lg btn-primary' onClick={this.joinSession} style={{ width: 120 }}>
                                 Student <i className='glyphicon'></i>
                             </Link>
 
