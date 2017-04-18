@@ -1,5 +1,3 @@
-![alt tag](https://raw.githubusercontent.com/codeon19/eYak/master/client/build/static/media/eyak.9da31b62.png =100x20)
-
 # eYak
 
 ## Project Background
