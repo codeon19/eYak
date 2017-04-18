@@ -41,7 +41,7 @@ var api = require('./routes/api');
 app.use('/api', api);
 
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('client/build'));
+  app.use(express.static('Front-End/build'));
 
   app.get('*', function (req, res){
     res.sendFile(path.resolve(__dirname, 'Front-End/build', 'index.html'));
