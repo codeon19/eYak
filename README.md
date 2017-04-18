@@ -1,4 +1,4 @@
-![alt tag](https://raw.githubusercontent.com/codeon19/eYak/blob/master/client/build/static/media/eyak.9da31b62.png)
+![alt tag](https://raw.githubusercontent.com/codeon19/eYak/master/client/build/static/media/eyak.9da31b62.png)
 
 # eYak
 
