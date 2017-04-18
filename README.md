@@ -9,3 +9,9 @@ This project was first incepted during LAHacks2017 and completed for the Scope U
 Please check out this proejct at the following URL
 
 <https://eyak.herokuapp.com/>
+
+### MERN Stack
+* Mongo
+* Express
+* React (create-react-app)
+* Node
