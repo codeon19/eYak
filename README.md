@@ -1,4 +1,15 @@
-### eYak - Incepted during LAHacks2017
+![alt tag](https://raw.githubusercontent.com/codeon19/eYak/blob/master/client/build/static/media/eyak.9da31b62.png)
 
-eYak is a way for students to ask questions during a classroom session anonymously. Think of it as a combination of Piazza and Yik Yak.
-I built this partially during LAHacks2017 with the intention of developing a more in depth product.
+# eYak
+
+## Project Background
+
+This project was first incepted during LAHacks2017 and completed for the Scope USC Demo night. eYak is a way for students to ask questions during a classroom session anonymously. Think of it as a combination of the functionality of Piazza and the interface of Yik Yak.
+
+### Live URL
+
+Please check out this proejct at the following URL
+
+```
+<https://eyak.herokuapp.com/>
+```
