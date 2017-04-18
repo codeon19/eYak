@@ -19,7 +19,7 @@ var path = require('path');
 app.set('port', (process.env.PORT || 3001));
 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://heroku_9pwktg9n:fpr8bebiq9sk9jjkdnn3cptlt5@ds147900.mlab.com:47900/heroku_9pwktg9n');
+mongoose.connect(process.env.MONGODB_URI);
 
 //now we should configure the API to use bodyParser and look for JSON data in the request body
 app.use(bodyParser.urlencoded({ extended: true }));
